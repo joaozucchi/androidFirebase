@@ -13,12 +13,12 @@
         android:layout_marginTop="240dp"
         android:layout_marginEnd="119dp"
         android:text="buttonLogoff"
+        android:onClick="deslogar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/emailCurrent"
-        android:onClick="deslogar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
