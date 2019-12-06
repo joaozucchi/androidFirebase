@@ -21,15 +21,17 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
-    EditText emailText = findViewById(R.id.editText);
-    EditText senhaText = findViewById(R.id.editText2);
-
+    EditText emailText;
+    EditText senhaText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
+
+        emailText = findViewById(R.id.editText);
+        senhaText = findViewById(R.id.editText2);
 
     }
 
@@ -63,6 +65,20 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }else {
                     Toast.makeText(getApplicationContext(),"Falha ao realizar login",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+
+    public void recuperar(View view) {
+        mAuth.sendPasswordResetEmail(emailText.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(getApplicationContext(),"email enviado com sucesso",Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(getApplicationContext(),"Falha ao enviar email",Toast.LENGTH_LONG).show();
                 }
             }
         });
